@@ -1,0 +1,23 @@
+[project]
+name = "egile-mcp-x-post-creator"
+version = "0.1.0"
+description = "MCP server for creating and publishing attractive X/Twitter posts"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+    "uvicorn",
+    "fastapi",
+    "httpx",
+    "python-dotenv",
+    "tweepy>=4.14.0",
+    "anthropic>=0.18.0",
+    "openai>=1.12.0"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/egile_mcp_x_post_creator"]
