@@ -68,8 +68,11 @@ def create_post(
         
         #AI #Innovation"
     """
+    logger.info("🎬 create_post CALLED! text=%s, style=%s", text or post_text, style)
+    
     effective_text = text or post_text
     if not effective_text:
+        logger.info("❌ No text provided")
         return "❌ Error: No text provided. Pass either 'text' or 'post_text' with the content to draft."
 
     logger.info(
@@ -79,8 +82,10 @@ def create_post(
         include_hashtags,
         max_length,
     )
-
+    
+    logger.info("🔄 Calling x_service.create_post...")
     result = x_service.create_post(effective_text, style, include_hashtags, max_length)
+    logger.info("✅ x_service.create_post returned!")
     
     if not result["success"]:
         return f"❌ Error: {result['error']}"
@@ -98,6 +103,7 @@ def create_post(
     output += f"  • Style: {result['style']}\n\n"
     output += f"💡 TIP: To publish this post, use the publish_post tool with confirm=True\n"
     
+    logger.info("📤 Returning output to client")
     return output
 
 
